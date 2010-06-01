@@ -28,11 +28,13 @@ future (if appropriate).
 
 class Animal
   attr_reader :name
-  attr_accessor :traits
+  attr_accessor :questions
 
-  def initialize(name, trait_array)
-    @name = name.to_s # use to_s because I'm lazy and want to use symbols
-    @traits = trait_array
+  # @questions is an array of questions like "Does it have hair" (NO question
+  # mark) that apply to this animal
+  def initialize(name, question_array)
+    @name = name.to_s # use to_s because I want to be able to pass in symbols
+    @questions = question_array
   end
 
   # Add a comparison function so we can detect duplicates after loading from
@@ -42,7 +44,7 @@ class Animal
   end
 
   def to_s
-    @name + " / " + @traits.join(', ')
+    @name + " / " + @questions.join(', ')
   end
 end
 
@@ -73,45 +75,48 @@ class AnimalGame
     end
   end
 
+  # Play the game: Ask user to think of an animal, guess until the animal is
+  # guessed or we run out of animals, then if we run out of animals, ask for a
+  # clarifying question. Plays until user chooses to quit.
   def play
     keep_playing = true
     while keep_playing
       puts "Please think of an animal."
       while not ask_question("Have you thought of an animal")
       end
-      # In case we don't guess the animal, keep track of what traits the animal
+      # In case we don't guess the animal, keep track of what questions the animal
       # does have
-      @mystery_animals_traits = []
+      @mystery_animals_questions = []
       # possible_animals is pared down as we ask more questions
       possible_animals = @animals.dup
-      # possible_traits is reset each time we ask a question.
-      possible_traits = @animals.inject([]){|ary, animal| ary += animal.traits }.uniq
-      # traits we've already asked about
-      asked_traits = []
+      # possible_questions is reset each time we ask a question.
+      possible_questions = @animals.inject([]){|ary, animal| ary += animal.questions }.uniq
+      # questions we've already asked about
+      asked_questions = []
       # Have we guessed the animal yet?
       guessed = false
       while not guessed
-        if possible_traits.empty?
-          # No more traits, so we're out of questions. Add an animal and break.
+        if possible_questions.empty?
+          # No more questions, so we're out of questions. Add an animal and break.
           ask_for_and_add_new_animal()
           break
         end
-        current_trait = possible_traits.shift
-        asked_traits << current_trait
-        # Reget possible_traits so we don't ask irrelevant questions
-        possible_traits = possible_animals.inject([]){|ary, animal| ary += animal.traits }.uniq - asked_traits
-        trait_matches = ask_question(current_trait)
-        if trait_matches
-          # Animal DOES have this trait, REJECT animals who DON'T have it
+        current_question = possible_questions.shift
+        asked_questions << current_question
+        # Reget possible_questions so we don't ask irrelevant questions
+        possible_questions = possible_animals.inject([]){|ary, animal| ary += animal.questions }.uniq - asked_questions
+        question_matches = ask_question(current_question)
+        if question_matches
+          # Animal DOES have this question, REJECT animals who DON'T have it
           possible_animals.reject! do |animal|
-            ! animal.traits.include?(current_trait)
+            ! animal.questions.include?(current_question)
           end
-          # Add trait to the mystery animal's traits
-          @mystery_animals_traits << current_trait
+          # Add question to the mystery animal's questions
+          @mystery_animals_questions << current_question
         else
-          # Animal DOESN'T have this trait, REJECT animals who DO have it
+          # Animal DOESN'T have this question, REJECT animals who DO have it
           possible_animals.reject! do |animal|
-            animal.traits.include?(current_trait)
+            animal.questions.include?(current_question)
           end
         end
         if possible_animals.empty?
@@ -134,17 +139,17 @@ class AnimalGame
   end
 
   # A convenience function to ask for a new animal
-  # incorrect_guess defaults to nil to pass it to ask_for_new_trait
+  # incorrect_guess defaults to nil to pass it to ask_for_new_question
   def ask_for_and_add_new_animal(incorrect_guess = nil)
     print "I'm out of animals. What animal were you thinking of? "
     name = gets.chomp.sub(/^(a|an|the) /, '')
-    ask_for_and_add_new_trait(incorrect_guess, name)
-    add_animal(name, @mystery_animals_traits)
+    ask_for_and_add_new_question(incorrect_guess, name)
+    add_animal(name, @mystery_animals_questions)
   end
 
-  # Ask user for a new question and add it to either @mystery_animals_traits
-  # or incorrect_guess's traits, as appropriate
-  def ask_for_and_add_new_trait(incorrect_guess, correct_animal)
+  # Ask user for a new question and add it to either @mystery_animals_questions
+  # or incorrect_guess's questions, as appropriate
+  def ask_for_and_add_new_question(incorrect_guess, correct_animal)
     if incorrect_guess.nil?
       # Didn't have a chance to guess an animal, so just put in the
       # correct_animal
@@ -159,25 +164,25 @@ class AnimalGame
     answer = ask_question("Is this question true for #{article(correct_animal)} #{correct_animal}.")
     if answer
       # This question applies to correct_animal
-      @mystery_animals_traits << new_question
+      @mystery_animals_questions << new_question
     else
       # This question applies to incorrect_guess
       incorrect_animal = @animals.detect{|x| x.name == incorrect_guess }
-      incorrect_animal.traits << new_question
+      incorrect_animal.questions << new_question
     end
   end
 
-  # Add a new Animal with given name and traits to @animals and save it
+  # Add a new Animal with given name and questions to @animals and save it
   # to the Marshal file
-  def add_animal(name, traits_array)
+  def add_animal(name, questions_array)
     known_animal = @animals.detect{|a| a.name == name }
     if known_animal
       # We already know about this animal, but for whatever reason we didn't
-      # guess it. Don't add the animal, just modify its traits.
-      known_animal.traits |= traits_array
+      # guess it. Don't add the animal, just modify its questions.
+      known_animal.questions |= questions_array
     else
       # Completely new animal.
-      @animals << Animal.new(name, traits_array)
+      @animals << Animal.new(name, questions_array)
     end
     save_animals_array
   end
