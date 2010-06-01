@@ -10,7 +10,7 @@ Usage: "ruby animal.rb" and follow instructions.
 =begin
 == Animal ==
 
-The program is a animal quiz program.
+The program is an animal quiz program.
 
 It works like this. The program starts by telling the user to think of an
 animal. It then begins asking a series of yes/no questions about that animal:
