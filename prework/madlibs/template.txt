@@ -1,0 +1,2 @@
+Our favorite language is ((gem:a gemstone)). I think ((gem)) is better than ((a
+gemstone)). My favorite person is ((person:a person's name)), ((person)) is so great!
