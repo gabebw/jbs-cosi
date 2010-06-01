@@ -1,0 +1,3 @@
+exercise1.rb: http://www.screencast-o-matic.com/watch/c61VqTiqQ
+exercise2.rb: http://www.screencast-o-matic.com/watch/c61VqviqX
+exercise3.rb: http://www.screencast-o-matic.com/watch/c61VqKiqI
