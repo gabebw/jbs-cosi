@@ -2,8 +2,8 @@
 
 =begin
 madlibs.rb
-Mad Libs program
 Author: Gabe B-W
+Prework: Mad Libs program
 Parses ARGV[0] as a Mad Libs template file and asks user for words to fill in
 the blanks. 
 

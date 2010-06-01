@@ -1,6 +1,13 @@
 #!/usr/bin/ruby
 
 =begin
+Author: Gabe Berke-Williams
+Prework: Animal Game
+The program is a animal quiz program.
+Usage: "ruby animal.rb" and follow instructions.
+=end
+
+=begin
 == Animal ==
 
 The program is a animal quiz program.
