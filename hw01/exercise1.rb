@@ -1,2 +1,2 @@
 # output the string "hello brandeis"
-puts "hello brandeis "
+puts "hello brandeis"
