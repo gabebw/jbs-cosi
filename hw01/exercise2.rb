@@ -50,6 +50,5 @@ end
 # If called directly from commandline, output 2 random fortunes
 if __FILE__ == $0 
   f = Fortune.new
-  puts f.next_fortune
-  puts f.next_fortune
+  2.times { puts f.next_fortune }
 end
