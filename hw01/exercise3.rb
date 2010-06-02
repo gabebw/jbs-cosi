@@ -1,3 +1,5 @@
+# Author: Gabe Berke-Williams
+# HW01: exercise3.rb
 # This program will listen on port 8888 until it is interrupted (Ctrl-C).
 # Whenever a client connects to it, it returns a new fortune
 

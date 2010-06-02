@@ -1,3 +1,5 @@
+# Author: Gabe Berke-Williams
+# HW01: exercise2.rb
 # The fortune class.
 # Usage:
 # f = Fortune.new
