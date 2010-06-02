@@ -1,0 +1,45 @@
+==== RUBY CLIENT AND SERVER ASSIGNMENT ==== 
+
+* Here are two applications (see homework directory)
+
+myclient.rb
+
+* displays a prompt: >>
+* when user types in, a connection is made to server, over port 8888, and text is sent
+* whatever comes back is displayed on the console
+
+myserver.rb
+
+* awaits a connection over port 8888
+* if text that is sent is "t", then, the server responds with time of day
+* if text that is sent is "f", then the server responds with a fortune
+
+* DELIVERABLE: Update the comments for both programs to follow progstyle.txt
+* DELIVERABLE: What does line 12 and line 26 in myserver.rb do?
+
+* DELIVERABLE: Modify myserver.rb as follows:
+  * if the text that is sent is d followed by a filename (e.g. dtest.txt) then respond with that file
+  * what if the text file contains html? What would it take to get it to display in a browser?
+
+ROUTING ASSIGNMENT
+
+ * DELIVERABLE: Add logic to your server so it accepts commands that look like these. Do as many as you can
+
+date
+time
+message/joke
+message/fortune
+message/joke?lang=en
+message/joke?lang=someotherlanguage
+
+==== RUBY and RAILS
+ * Install Rails, and create at least, a "Hello World" application
+
+==== READING ====
+ * Read Chapters 1-4 of Agile Web Development 
+ * DELIVERABLE: Actually type in and do several of the programs
+ * DELIVERABLE: Blog about 2 chapters that you found interesting or/and confusing
+
+=== Incubator Homework (teams)====
+ * Write a blog post describing 3 different user 'personas'. "Joe is a freshman at Brandeis. He just met his roommate." etc.
+ * Brainstorm as a team with some ideas for the UI. Be prepared to informally discuss it in class
