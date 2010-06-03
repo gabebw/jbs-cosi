@@ -39,7 +39,7 @@ class MyServer < GServer
     # language.
     @language2joke = {
       "en" => "Why did the chicken cross the road? To get to the other side!",
-      "fr" => "Pourquoi le poulet at il traverse la rue? Pour obtenir de l'autre cote!"
+      "fr" => "Pourquoi le poulet a-t-il traverse la rue? Pour obtenir de l'autre cote!"
     }
   end
 
@@ -59,15 +59,15 @@ class MyServer < GServer
       
       # If user input 'x', exit.
       if line == 'x'
-        io_object.puts "Exiting!"
+        puts "Exiting!"
         break
       end
 
       # Use a case statement to get the string to pass to io_object.puts
       io_string = case line
-                  when /^t|time$/
+                  when /^(t|time)$/ # match "t" or "time"
                     "The time of day is #{get_time}"
-                  when %r{f|message/fortune}
+                  when %r{^(f|message/fortune)$} # match "f" or "message/fortune"
                     get_fortune
                   when /^d(.+)/ # the regex captures the filename in $1
                     # when sending "d" followed by filename ("dtest.txt"), respond with
@@ -81,14 +81,14 @@ class MyServer < GServer
                     end
                   when 'date'
                     get_date
-                  when %r{^message/joke(?:\?lang=(.+))?}
+                  when %r{^message/joke(?:\?lang=(.+))?$} # match "message/joke" or "message/joke?lang=..."
                     # The regex captures the lang value in $1
                     # Default to english if no lang supplied
                     language = $1.nil? ? "en" : $1
                     get_joke(language)
-                    # TODO
-                  when "message/fortune"
-                    get_fortune
+                  when /quit|exit/
+                    # Make it (sort of) user friendly
+                    'Use "x" to quit.'
                   else
                     # Output to STDOUT first
                     puts "received line #{line}"
