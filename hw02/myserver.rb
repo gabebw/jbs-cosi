@@ -63,24 +63,27 @@ class MyServer < GServer
                   when 'x'
                     # 'x' causes the TCPSocket in myclient.rb to quit, so 
                     # notify us that it's quitting
-                    puts "Exiting!"
+                    puts "#{my_client_id} has exited."
                     "Goodbye!" # Bid a fond farewell to the TCPSocket
                   when /^(t|time)$/ # match "t" or "time"
                     "The time of day is #{get_time}"
                   when %r{^(f|message/fortune)$} # match "f" or "message/fortune"
                     get_fortune
+                  # This must be before the /^d.../ regex since otherwise the
+                  # /^d/ one captures the "date" line before this can get to it
+                  when 'date'
+                    get_date
                   when /^d(.+)/ # the regex captures the filename in $1
                     # when sending "d" followed by filename ("dtest.txt"), respond with
                     # content of e.g. test.txt
                     # If the file doesn't exist, returns a message saying so.
                     filename = $1
                     if File.exist?(filename)
-                      File.readlines(filename).gsub("\n", " ")
+                      # gsub the newlines because they really screw up readline
+                      File.read(filename).gsub("\n", "<NEWLINE>")
                     else
                       "Error: file #{filename} does not exist."
                     end
-                  when 'date'
-                    get_date
                   when %r{^message/joke(?:\?lang=(.+))?$} # match "message/joke" or "message/joke?lang=..."
                     # The regex captures the lang value in $1
                     # Default to english if no lang supplied
