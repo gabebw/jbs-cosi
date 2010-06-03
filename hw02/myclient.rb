@@ -22,7 +22,7 @@ Available commands are described in myserver.rb
 
 require 'socket'
 
-# Open socket to server listening to 0.0.0.0:8888
+# Open socket to MyServer (from myserver.rb) listening on 0.0.0.0:8888
 tcp_socket = TCPSocket.open('0.0.0.0', 8888)
 
 loop do # Loop forever
