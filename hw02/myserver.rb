@@ -27,7 +27,6 @@ Then in the shell running myclient, type in commands as described above.
 
 require 'gserver'
 
-
 class MyServer < GServer
   def initialize(*args)
     super(*args)    
@@ -122,7 +121,7 @@ class MyServer < GServer
 
   # Send a random fortune to the client
   def get_fortune
-    @fortunes.sample # sample is 1.9 only
+    @fortunes.sample # sample method is 1.9 only
   end
 end
 

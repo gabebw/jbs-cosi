@@ -5,11 +5,9 @@ HW02: myclient.rb
 
 Description:
 Displays a prompt: >>
-When user types something in, a connection is made to server, over port 8888,
-and text is sent.
+When user types something in, this program connects to 0.0.0.0:8888 and sends the text.
 Whatever comes back is displayed on the console.
 
-Usage:
 Usage:
 ruby myserver.rb (included)
 while myserver.rb is running, run in another shell:
@@ -27,16 +25,18 @@ require 'socket'
 # Open socket to server listening to 0.0.0.0:8888
 tcp_socket = TCPSocket.open('0.0.0.0', 8888)
 
-loop do
+loop do # Loop forever
   print ">> "
+  # chomp so we can do command_string == .... rather than =~
   command_string = gets.chomp
   # Exit if user types in "x"
   if command_string == 'x'
     puts "client: exiting"
     break
   end
+  # send command to server
   tcp_socket.puts(command_string)
+  # Get response from server
   servers_resp = tcp_socket.readline
   puts servers_resp.to_s
 end
-
