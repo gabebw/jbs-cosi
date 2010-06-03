@@ -10,7 +10,8 @@ Listens for connections on localhost:8888 and responds appropriately.
 Available commands:
 * t or time: return current time
 * f or message/fortune: return a random fortune from @fortunes
-* x: quit
+* x: output "Exiting!" and return "Goodbye!" since this causes myclient.rb to
+quit
 * d: if it receives "d" followed by a filename ("dtest.txt"), returns the contents of e.g. test.txt or a message saying the file does not exist. 
 * date: the current date
 * message/joke: return a joke in English
@@ -57,14 +58,13 @@ class MyServer < GServer
       # chain reaction of very odd behavior)
       line = io_object.readline.chomp
       
-      # If user input 'x', exit.
-      if line == 'x'
-        puts "Exiting!"
-        break
-      end
-
       # Use a case statement to get the string to pass to io_object.puts
       io_string = case line
+                  when 'x'
+                    # 'x' causes the TCPSocket in myclient.rb to quit, so 
+                    # notify us that it's quitting
+                    puts "Exiting!"
+                    "Goodbye!" # Bid a fond farewell to the TCPSocket
                   when /^(t|time)$/ # match "t" or "time"
                     "The time of day is #{get_time}"
                   when %r{^(f|message/fortune)$} # match "f" or "message/fortune"
@@ -86,9 +86,6 @@ class MyServer < GServer
                     # Default to english if no lang supplied
                     language = $1.nil? ? "en" : $1
                     get_joke(language)
-                  when /quit|exit/
-                    # Make it (sort of) user friendly
-                    'Use "x" to quit.'
                   else
                     # Output to STDOUT first
                     puts "received line #{line}"

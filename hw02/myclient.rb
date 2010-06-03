@@ -27,16 +27,14 @@ tcp_socket = TCPSocket.open('0.0.0.0', 8888)
 
 loop do # Loop forever
   print ">> "
+  # Always get server's response, even if we're quitting.
   # chomp so we can do command_string == .... rather than =~
   command_string = gets.chomp
-  # Exit if user types in "x"
-  if command_string == 'x'
-    puts "client: exiting"
-    break
-  end
   # send command to server
   tcp_socket.puts(command_string)
   # Get response from server
   servers_resp = tcp_socket.readline
   puts servers_resp.to_s
+  # Exit if user types in "x"
+  break if command_string == 'x'
 end
