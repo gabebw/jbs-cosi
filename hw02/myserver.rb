@@ -43,7 +43,7 @@ class MyServer < GServer
     }
   end
 
-  # Serve content to a connected client. io_object is an instance of myclient.rb
+  # Serve content to a connected client. io_object is an instance of TCPSocket from myclient.rb
   def serve(io_object)
     # increase the client id for this new client and assign it 
     @@client_id += 1
