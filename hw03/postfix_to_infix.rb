@@ -35,28 +35,25 @@ class Expression
 
   # Get the precedence of this Expression's operator
   def precedence
-    precedence = case @operator
-                 when '+', '-'
-                   # addition and subtraction
-                   0
-                 when '*', '/'
-                   # multiplication and division
-                   1
-                 end
-    return precedence
+    case @operator
+    when '+', '-'
+      # addition and subtraction
+      0
+    when '*', '/'
+      # multiplication and division
+      1
+    end
   end
 
   # Recursively traverse this expression and convert to string
   def to_s
-    # deal with parentheses
     # Wrap the expression on the right in parentheses if the operation of the
     # expression on the right has a lower precedence than this Expression's.
     # e.g. 2 * (3 + 5) because without parentheses it becomes 6 + 5
     @right.do_parens = has_lower_precedence?(@right) if @right.class==Expression
+    # Do the same for the left
     @left.do_parens = has_lower_precedence?(@left) if @left.class == Expression
-    l_str =  @left.to_s
-    r_str = @right.to_s 
-    string = "#{l_str} #{@operator} #{r_str}"
+    string = "#{@left} #{@operator} #{@right}"
     # Wrap in parentheses if necessary
     string = "(#{string})" if @do_parens
     return string
@@ -76,12 +73,12 @@ class Postfix2Infix
   # is provided (235).
   def parse(postfix_str)
     tokens = postfix_str.scan(%r{\d*\.?\d+|#{@loose_operator_regex}})
-    # Loop through tokens and add operands to the stack. If we hit an operator, 
-    # pop 2 items off the stack and create an Expression with that operator
-    # and the 2 items as its operands. Keep looping until we run out of tokens
-    # or hit invalid input. Eventually, stack will contain just one item, a
-    # single expression representing the postfix string we passed in.
-    stack = []
+      # Loop through tokens and add operands to the stack. If we hit an operator, 
+      # pop 2 items off the stack and create an Expression with that operator
+      # and the 2 items as its operands. Keep looping until we run out of tokens
+      # or hit invalid input. Eventually, stack will contain just one item, a
+      # single expression representing the postfix string we passed in.
+      stack = []
     while not tokens.empty?
       # get first item in tokens
       token = tokens.shift
