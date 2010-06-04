@@ -60,6 +60,12 @@ class Expression
   end
 end
 
+class UnbalancedExpressionError < Exception
+  def initialize(msg = "unbalanced expression")
+    super(msg)
+  end
+end
+
 class Postfix2Infix
   def initialize
     # Matches an operator that takes up the whole string
@@ -71,6 +77,7 @@ class Postfix2Infix
   # Pass in the postfix string, e.g. "2 3 5 + *". Whitespace is optional, so you
   # can go "2 3 5+*". Obviously, "235 +*" will not work, since only one number
   # is provided (235).
+  # If the expression is unbalanced, raises an UnbalancedExceptionError.
   def parse(postfix_str)
     tokens = postfix_str.scan(%r{\d*\.?\d+|#{@loose_operator_regex}})
       # Loop through tokens and add operands to the stack. If we hit an operator, 
@@ -85,6 +92,7 @@ class Postfix2Infix
       if token =~ @strict_operator_regex
         # Operator
         # pop off 2 elements (they may be expressions themselves)
+        raise UnbalancedExpressionError if stack.size < 2
         left, right = stack.pop(2)
         stack.push(Expression.new(token, left, right))
       elsif token =~ /^(\d+)?\.\d+$/
@@ -94,10 +102,6 @@ class Postfix2Infix
       elsif token =~ /^\d+$/
         # Integer
         stack.push(token.to_i)
-      else
-        # Invalid input
-        puts "Invalid input: #{token}, stopping parsing."
-        return ""
       end
     end
     # The stack is just one element, the Expression. Convert to string and
@@ -113,5 +117,10 @@ else
   str = ARGV[0]
   # Create an instance of the class
   p2i = Postfix2Infix.new
-  puts p2i.parse(str)
-end
+  begin
+    infix = p2i.parse(str)
+    puts infix
+  rescue UnbalancedExpressionError => bang
+    puts "Error: #{bang}"
+  end
+  end
