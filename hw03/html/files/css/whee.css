@@ -1,0 +1,126 @@
+html {
+    background-color: #775555;
+    color: black;
+}
+
+body {
+    font-family: Verdana, Helvetica, "Lucida Grande", Arial, sans-serif;
+    /*
+     *http://www.maratz.com/blog/archives/2005/10/21/typetesters-base-font-size/
+     * This sets it to 10px and works for resizing 
+     * in IE. Plus, ems are easy to calculate. */
+    font-size: 62.5%;
+    width: 100%;
+}
+
+#all {
+    height: auto;
+    margin: 0 auto;
+    text-align: left;
+    width: 800px;
+}
+
+#boundary {
+    background: transparent url("img/boundary.gif") repeat-x;
+    width: 800px;
+    height: 10px;
+    float: left;
+}
+
+#content {
+    margin: 0 auto;
+    color: black;
+    background-color:#E9E8FF; /* off-white */
+    padding: 10px;
+    width: 780px; /* 800px - 2*10px */
+    letter-spacing: 1px;
+    font-size: 1.2em; /* 12pt */
+    line-height: 1.5em; /* leading */
+    float: left;
+    height: auto;
+}
+
+#bottom {
+    text-align: center;
+    font-size: 1.2em;
+    padding-top: 10px;
+    clear: both; /* bring it into the flow */
+}
+
+/* menu */
+#menu {
+    float: left;
+    height: 60px;
+    width: 100%;
+    margin: 10px 0 15px 0;
+}
+
+a#logo {
+    background: transparent url("img/logo.gif") no-repeat;
+    /* img is 158x58 */
+    width: 158px;
+    height: 58px;
+    display: block; /* a needs to be block-level */
+}
+
+#menu ul {
+    /* negative upper margin to bring it up past the G's descender */
+    margin: -10px 0 0 45px;
+    float: left;
+    clear: left;
+    font-size: 1.4em;
+}
+
+#menu ul li {
+    float: left;
+    margin-left: 10px;
+}
+
+#menu ul a {
+    text-decoration: none;
+}
+
+#menu ul a, #menu ul a:link, #menu ul a:visited {
+    color: #5D82E6; /* bluish */
+}
+
+#menu ul a:hover, #menu ul a:active, #menu ul #here, #menu ul a.external:hover, #menu ul a.external:active  {
+    color: #FF3333; /* orange-red */
+}
+
+#menu ul a.external {
+    color: #FFA500; /* orange */
+}
+/* End menu */
+
+ul#funny {
+    margin: 1em 0;
+    padding-left: 20px;
+}
+
+ul#funny li {
+    list-style: disc outside none;
+    display: list-item;
+}
+
+/* Text formatting */
+h1, h2, h3 {
+    color: black;
+    font-family: Georgia, serif;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    line-height: 1.1em;
+}
+h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+h1 { font-size: 2em; margin: .5em 0;}
+h2 { font-size: 1.5em; margin: .5em 0; }
+h3 { font-size: 1.17em; margin: 1em 0; }
+h4 { font-size: 1em; margin: 1.33em 0;}
+h6 { font-size: 0.67em; margin: 1em 0; }
+small { font-size: 0.5em; }
+p {
+    margin: 1em 0;
+}
+
+.centerText { text-align: center; } /* used on haiku page */

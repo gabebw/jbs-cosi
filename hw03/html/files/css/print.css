@@ -1,0 +1,9 @@
+body {
+	background-color: white; color: black;
+}
+
+/* You need to be HELLA specific to make the textBox's white + black */
+div#container div.content { 
+	background-color: white;
+	color: black;
+}

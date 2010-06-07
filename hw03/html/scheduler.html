@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!-- I'm all HTML5 compliant wheeeeee -->
+<title>gbw » Brandeis Schedule Creator</title>
+<link rel="stylesheet" type="text/css" href="files/css/reset-min.css" media="all">
+<link rel="stylesheet" type="text/css" title="Whee" href="files/css/whee.css" media="all">
+<link rel="stylesheet" type="text/css" href="files/css/print.css" media="print">
+<link rel="stylesheet" type="text/css" href="files/css/moremagic.css" media="all">
+<script type="text/javascript" src="files/js/jquery.js"></script>
+<script type="text/javascript" src="files/js/registrar-jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var r = new registrar();
+    $('#more_usage_toggle').click(function(e){
+		e.preventDefault();
+		$('#showhide').text( ($('#showhide').text() == 'Show' ? 'Hide' : 'Show') );
+		$('#usage').toggle();
+    });
+	$('#q1_toggle').click(function(e){
+		e.preventDefault();
+		$('#q1').toggle();
+	});
+    $('#q2_toggle').click(function(e){
+		e.preventDefault();
+		$('#q2').toggle();
+    });
+    $('#q3_toggle').click(function(e){
+		e.preventDefault();
+		$('#q3').toggle();
+    });
+    $('#formID').submit(function(e){
+		e.preventDefault();
+		r.submit();
+    });
+    $('input')[0].focus();
+});
+</script>
+</head><body>
+<div id="all">
+<div id="menu">
+<a id="logo" href="http://localhost/~gbw/" title="Home page"></a>
+<ul id="main">
+<li><a href="http://localhost/">Home</a></li>
+<li><a href="http://localhost/aboutme">About Me</a></li>
+<li><a id="here" href="http://localhost/moremagic">Brandeis
+ Scheduler</a></li>
+<li><a href="http://localhost/code">Code</a></li>
+<li><a href="http://localhost/funny">Funny Stuff</a></li>
+<li><a href="http://localhost/links">Links</a></li> 
+<li><a href="http://localhost/private/">Private</a></li>
+</ul>
+</div>
+<div id="boundary"></div>
+<div id="content">
+<h1>Brandeis Schedule Creator <small>(v. 2.2)</small></h1>
+<p>
+This is a schedule maker for Brandeis classes. Simply enter your classes
+like "ANTH 1A 1" (for ANTH 1a section 1) or paste from the <a 
+href="http://www.brandeis.edu/registrar/schedule/search?strm=1101&amp;view=UGRD">registrar
+ class search</a> and it will automagically create your schedule. If you
+ don't enter a section, it assumes you mean section 1.
+</p>
+<p>Note that the permanent link pages do not update - e.g. if Brandeis 
+decides to post classrooms, you will have to re-enter your classes here.</p>
+<a id="more_usage_toggle" href="#"><span id="showhide">Show</span> more 
+usage notes</a>
+<div id="usage" style="display: none;">
+<p>
+<b><a id="q1_toggle" href="#">Q: My class only has one section. Do I 
+still have to put it in?</a></b>
+</p>
+<div id="q1" style="display: none;">
+<p>
+<b>A</b>:
+If you don't specify a section, or if you specify an invalid section 
+(e.g. "ANTH 1a sec. <span class="invalid">Bacon</span>"), then this
+page will assume that you mean section 1. If there's only one section,
+this will be what you want and you can leave it off. If there is more
+than one section, then section 1 might not be what you want. 
+Fortunately, the section is displayed in the schedule, so you can 
+double-check it.
+</p>
+</div><p>
+<b><a id="q2_toggle" href="#">Q: Do spacing or capitalization matter? 
+When I copy-paste from Brandeis's schedule search, sometimes the format 
+is a little wonky.</a></b>
+</p>
+<div id="q2" style="display: none;">
+<p>
+<b>A</b>: Neither capitalization nor spacing matter. Like, at all.
+This: "ANTH 1a sec. 1" is interpreted the same as 
+"AnTh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+1A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sEc. 1&nbsp;&nbsp;&nbsp;". Or, putting 
+the first rule and this one together:
+"ANTH 1a sec. 1" is the same as "&nbsp;&nbsp;AnTH 1A&nbsp;&nbsp;". Go 
+nuts.
+</p>
+</div><p>
+<b><a id="q3_toggle" href="#">Q: The schedule looks really weird! Some 
+of the classes are overflowing out the sides!</a></b>
+</p>
+<div id="q3" style="display: none;">
+<p>
+<b>A</b>: If the schedule looks totally wonky, you probably just picked 
+classes
+that have conflicting times. I think it's a nice visual aid. This is a 
+feature, not a bug. :)
+</p>
+</div></div><div id="hook"></div>
+<div id="status">Status: Idle</div>
+<div id="bad" style="display: none; border: 2px solid red;"></div>
+<form id="formID" method="get" action="">
+<div>
+<label for="term-select">Term:</label> 
+<select name="term" id="term-select">
+<option value="2011/Spring">Spring 2011</option>
+<option value="2010/Fall" selected="selected">Fall 2010</option>
+<option value="2010/Spring">Spring 2010</option>
+<option value="2009/Fall">Fall 2009</option>
+<option value="2009/Spring">Spring 2009</option>
+<option value="2008/Fall">Fall 2008</option>
+<option value="2008/Spring">Spring 2008</option>
+<option value="2007/Fall">Fall 2007</option>
+<option value="2007/Summer">Summer 2007</option>
+<option value="2007/Spring">Spring 2007</option>
+<option value="2006/Fall">Fall 2006</option>
+<option value="2006/Spring">Spring 2006</option>
+<option value="2005/Fall">Fall 2005</option>
+<option value="2005/Spring">Spring 2005</option>
+<option value="2004/Fall">Fall 2004</option>
+</select>
+<br>
+<label for="level-select">Level:</label>
+<select name="level" id="level-select">
+<option value="UGRD" selected="selected">Undergrad</option>
+<option value="GRAD">Graduate</option>
+<option value="all">Both</option>
+</select>
+<br>
+<input name="courses[]">
+<input name="courses[]">
+<input name="courses[]">
+<input name="courses[]">
+<input name="courses[]">
+<input name="courses[]">
+<input name="courses[]">
+<input name="courses[]">
+<input value="Submit" type="submit">
+</div>
+</form>
+<br>
+<div id="link"></div>
+<br>
+<br>
+<div id="schedTable" style="display: none;">schedTable</div>
+
+</div> <!-- <div id="bottom"> </div> -->
+</div>
+</body></html>
