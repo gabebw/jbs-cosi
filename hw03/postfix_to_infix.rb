@@ -8,10 +8,22 @@ postfix_to_infix.rb
 
 Description: Converts a postfix string provided on the command line into infix
 notation. Adds the minimum amount of parentheses necessary to remove ambiguity.
+Space is optional in the postfix string.
+Available operators:
+ +
+ -
+ *
+ /
+ ** (exponentiation)
+ ^ (exponentiation)
 
 Usage:
 ruby postfix_to_infix.rb '56 34 213.7 + * 678 -'
 => 56 * (34 + 213.7) - 678
+ruby postfix_to_infix.rb '2 3 5 4 + *'
+=> Error: too many operands.
+ruby postfix_to_infix.rb '2 3 + *'
+=> Error: too many operators.
 =end
 
 # An expression class, containing an operator, a left operand, and a right
@@ -102,7 +114,9 @@ class Postfix2Infix
       if token =~ @strict_operator_regex
         # Operator
         # pop off 2 elements (they may be expressions themselves)
-        raise UnbalancedExpressionError if stack.size < 2
+        if stack.size < 2
+          raise UnbalancedExpressionError, "too many operators"
+        end
         left, right = stack.pop(2)
         stack.push(Expression.new(token, left, right))
       elsif token =~ /^#{@float_regex}$/
@@ -113,6 +127,10 @@ class Postfix2Infix
         # Integer
         stack.push(token.to_i)
       end
+    end
+    if stack.size != 1
+      # Too many operands (e.g. "2 3 4 +"), raise appropriate error.
+      raise UnbalancedExpressionError, "too many operands."
     end
     # The stack is just one element, the Expression. Convert to string and
     # return.
