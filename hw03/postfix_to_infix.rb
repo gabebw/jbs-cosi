@@ -7,7 +7,7 @@ HW: 3
 postfix_to_infix.rb
 
 Description: Converts a postfix string provided on the command line into infix
-notation. Adds the minimum amount of parentheses necessary.
+notation. Adds the minimum amount of parentheses necessary to remove ambiguity.
 
 Usage:
 ruby postfix_to_infix.rb '56 34 213.7 + * 678 -'
@@ -20,7 +20,7 @@ class Expression
   attr_writer :do_parens
 
   def initialize(operator, left = nil, right = nil)
-    @operator = operator
+    @operator = operator # e.g. +, -, *, /
     @left = left
     @right = right
     # Should this Expression be wrapped in parens when shown as a string?
@@ -42,6 +42,9 @@ class Expression
     when '*', '/'
       # multiplication and division
       1
+    when '**', '^'
+      # powers / roots (e.g. 2^(1/2))
+      2
     end
   end
 
@@ -68,10 +71,16 @@ end
 
 class Postfix2Infix
   def initialize
-    # Matches an operator that takes up the whole string
-    @strict_operator_regex = %r{^[\+\-\*/]$}
     # Matches an operator anywhere in the string
-    @loose_operator_regex = %r{[\+\-\*/]}
+    #@loose_operator_regex = %r{[\+\-\*/]}
+    @loose_operator_regex = %r{\+|\-|\*{1,2}|/|\^}
+    # Matches an operator that takes up the whole string
+    @strict_operator_regex = Regexp.new('^' + @loose_operator_regex.source + '$')
+    # Matches: .3, 0.3 or 3.0
+    @float_regex = /\d*\.\d+/
+    # Matches 3 but not .3 or 3.0
+    @integer_regex = /\d+(?!\.)/
+    @number_regex = Regexp.union(@float_regex, @integer_regex)
   end
 
   # Pass in the postfix string, e.g. "2 3 5 + *". Whitespace is optional, so you
@@ -79,13 +88,14 @@ class Postfix2Infix
   # is provided (235).
   # If the expression is unbalanced, raises an UnbalancedExceptionError.
   def parse(postfix_str)
-    tokens = postfix_str.scan(%r{\d*\.?\d+|#{@loose_operator_regex}})
-      # Loop through tokens and add operands to the stack. If we hit an operator, 
-      # pop 2 items off the stack and create an Expression with that operator
-      # and the 2 items as its operands. Keep looping until we run out of tokens
-      # or hit invalid input. Eventually, stack will contain just one item, a
-      # single expression representing the postfix string we passed in.
-      stack = []
+    tokens = postfix_str.scan(Regexp.union(@number_regex, @loose_operator_regex))
+
+    # Loop through tokens and add operands to the stack. If we hit an operator,
+    # pop 2 items off the stack and create an Expression with that operator
+    # and the 2 items as its operands. Keep looping until we run out of tokens
+    # or hit invalid input. Eventually, stack will contain just one item, a
+    # single expression representing the postfix string we passed in.
+    stack = []
     while not tokens.empty?
       # get first item in tokens
       token = tokens.shift
@@ -95,11 +105,11 @@ class Postfix2Infix
         raise UnbalancedExpressionError if stack.size < 2
         left, right = stack.pop(2)
         stack.push(Expression.new(token, left, right))
-      elsif token =~ /^(\d+)?\.\d+$/
+      elsif token =~ /^#{@float_regex}$/
         # Float. Allows ".3" even though Ruby itself doesn't.
-        token = '0' + token if $1.nil?  # ".3" => "0.3" for to_f
+        token = '0' + token if $1.nil?  # ".3" => "0.3" so to_f doesn't raise a warning
         stack.push(token.to_f)
-      elsif token =~ /^\d+$/
+      elsif token =~ /^#{@integer_regex}$/
         # Integer
         stack.push(token.to_i)
       end
@@ -114,7 +124,7 @@ if ARGV.empty?
   puts "Must provide input, like '2 3 +'."
   exit 1
 else
-  str = ARGV[0]
+  str = ARGV.join(' ')
   # Create an instance of the class
   p2i = Postfix2Infix.new
   begin
@@ -123,4 +133,4 @@ else
   rescue UnbalancedExpressionError => bang
     puts "Error: #{bang}"
   end
-  end
+end
