@@ -10,10 +10,13 @@
 <body id="store">
   <div id="banner">
     <%= image_tag("logo.png") %>
-    <%= @page_title || "Pragmatic Bookshelf" %><!-- <label id="code.depot.e.title"/> -->
+    <%= @page_title || "Pragmatic Bookshelf" %>
   </div>
   <div id="columns">
     <div id="side">
+      <div id="cart">
+        <%= render(:partial => "cart", :object => @cart) %>
+      </div>
       <%= @current_time %><br />
       <a href="http://www....">Home</a><br />
       <a href="http://www..../faq">Questions</a><br />
@@ -25,8 +28,8 @@
         <div id="notice"><%= flash[:notice] %></div>
       <% end -%>
 
-      <%= yield :layout %><!-- <label id="code.depot.e.include"/> -->
+      <%= yield :layout %>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
