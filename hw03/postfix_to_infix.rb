@@ -20,6 +20,8 @@ Available operators:
 Usage:
 ruby postfix_to_infix.rb '56 34 213.7 + * 678 -'
 => 56 * (34 + 213.7) - 678
+ruby postfix_to_infix.rb '4 3 2 1 - - -'
+=> 4 - (3 - (2 - 1))
 ruby postfix_to_infix.rb '2 3 5 4 + *'
 => Error: too many operands.
 ruby postfix_to_infix.rb '2 3 + *'
@@ -37,12 +39,19 @@ class Expression
     @right = right
     # Should this Expression be wrapped in parens when shown as a string?
     @do_parens = false
+    @associative_operators = %w{+ *}
   end
 
   # Test if the other_expresssion's operator has a lower precedence than this
   # one
   def has_lower_precedence?(other_expression)
-    return precedence() > other_expression.precedence()
+    return precedence > other_expression.precedence
+  end
+
+  # Is this Expression's operation associative (2 + 5 = 5 + 2)
+  # or not (2 - 5 != 5 - 2)?
+  def is_associative?
+    @associative_operators.include?(@operator)
   end
 
   # Get the precedence of this Expression's operator
@@ -62,12 +71,16 @@ class Expression
 
   # Recursively traverse this expression and convert to string
   def to_s
-    # Wrap the expression on the right in parentheses if the operation of the
-    # expression on the right has a lower precedence than this Expression's.
-    # e.g. 2 * (3 + 5) because without parentheses it becomes 6 + 5
-    @right.do_parens = has_lower_precedence?(@right) if @right.class==Expression
-    # Do the same for the left
-    @left.do_parens = has_lower_precedence?(@left) if @left.class == Expression
+    # Wrap the expression on the left/right in parentheses if the operation of
+    # the expression on the left/right has a lower precedence than this
+    # Expression's.  e.g. 2 * (3 + 5) because without parentheses it becomes 6 +
+    # 5
+    [@left, @right].each do |operand|
+      if operand.class == Expression
+        # Need || to evaluate both at once. "or" evaluates sequentially.
+        operand.do_parens = has_lower_precedence?(operand) || ! operand.is_associative?
+      end
+    end
     string = "#{@left} #{@operator} #{@right}"
     # Wrap in parentheses if necessary
     string = "(#{string})" if @do_parens
@@ -115,7 +128,7 @@ class Postfix2Infix
         # Operator
         # pop off 2 elements (they may be expressions themselves)
         if stack.size < 2
-          raise UnbalancedExpressionError, "too many operators"
+          raise UnbalancedExpressionError, "too many operators."
         end
         left, right = stack.pop(2)
         stack.push(Expression.new(token, left, right))
