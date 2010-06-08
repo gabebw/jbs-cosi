@@ -45,7 +45,7 @@ class Expression
   # Test if the other_expresssion's operator has a lower precedence than this
   # one
   def has_lower_precedence?(other_expression)
-    return precedence > other_expression.precedence
+    precedence > other_expression.precedence
   end
 
   # Is this Expression's operation associative (2 + 5 = 5 + 2)
@@ -134,7 +134,10 @@ class Postfix2Infix
         stack.push(Expression.new(token, left, right))
       elsif token =~ /^#{@float_regex}$/
         # Float. Allows ".3" even though Ruby itself doesn't.
-        token = '0' + token if $1.nil?  # ".3" => "0.3" so to_f doesn't raise a warning
+        # Always prepend a 0. If the token is "3.0" then changing it to "03.0"
+        # doesn't change anything, but it matters for e.g. ".3", which raises a
+        # warning while "0.3" doesn't.
+        token = '0' + token 
         stack.push(token.to_f)
       elsif token =~ /^#{@integer_regex}$/
         # Integer
