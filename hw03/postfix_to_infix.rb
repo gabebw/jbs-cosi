@@ -73,12 +73,11 @@ class Expression
   def to_s
     # Wrap the expression on the left/right in parentheses if the operation of
     # the expression on the left/right has a lower precedence than this
-    # Expression's.  e.g. 2 * (3 + 5) because without parentheses it becomes 6 +
+    # Expression's, e.g. 2 * (3 + 5) because without parentheses it becomes 6 +
     # 5
     [@left, @right].each do |operand|
       if operand.class == Expression
-        # Need || to evaluate both at once. "or" evaluates sequentially.
-        operand.do_parens = has_lower_precedence?(operand) || ! operand.is_associative?
+        operand.do_parens = (has_lower_precedence?(operand) or ! operand.is_associative?)
       end
     end
     string = "#{@left} #{@operator} #{@right}"
