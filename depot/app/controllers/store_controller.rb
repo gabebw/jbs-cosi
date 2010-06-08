@@ -3,5 +3,15 @@ class StoreController < ApplicationController
     @products = Product.find_products_for_sale
     @current_time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
   end
+  
+  def add_to_cart
+    product = Product.find(params[:id])
+    @cart = find_cart
+    @cart.add_product(product)
+  end
 
+  private # private methods are not available as actions
+  def find_cart
+    session[:cart] ||= Cart.new
+  end
 end
