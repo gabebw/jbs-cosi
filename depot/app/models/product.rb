@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+  has_many :line_items
   # Class method so we can call Product.xxx
   def self.find_products_for_sale
     # find returns an array with a Product object for each row in the DB
