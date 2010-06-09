@@ -14,6 +14,19 @@ class StoreController < ApplicationController
     end
   end
   
+  def save_order
+    @cart = find_cart
+    @order = Order.new(params[:order])
+    @order.add_line_items_from_cart(@cart)
+    if @order.save
+      session[:cart] = nil
+      redirect_to_index("Thank you for your order")
+    else
+      # Redisplay checkout form if it fails to save
+      render :action => "checkout"
+    end
+  end
+  
   def add_to_cart
     begin
       product = Product.find(params[:id])
