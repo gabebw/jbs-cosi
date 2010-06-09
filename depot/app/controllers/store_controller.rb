@@ -13,7 +13,8 @@ class StoreController < ApplicationController
       @current_item = @cart.add_product(product)
       # Now Rails will look for an add_to_cart template to render
       respond_to do |format|
-        format.js
+        format.js if request.xhr? # only do JS if it's from an XHR object
+        format.html { redirect_to_index } # show HTML if it's not
       end
     rescue ActiveRecord::RecordNotFound
       logger.error("Attempt to access invalid product #{params[:id]}")
