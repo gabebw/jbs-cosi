@@ -1,4 +1,9 @@
 # page variable is an instance of a JS generator
+
+# Hide the flash notice if it's there
+# page will find one div#notice, which we hide, or none, and do nothing
+page.select('div#notice').each{ |div| div.hide }
+
 # replace div with id "cart" with the resultant HTML
 page.replace_html("cart", :partial => "cart", :object => @cart)
 
