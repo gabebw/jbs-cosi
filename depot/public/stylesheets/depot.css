@@ -1,20 +1,20 @@
 /* Global styles */
 
 h1 {
-        font:  150% sans-serif;
-        color: #226;
-        border-bottom: 3px dotted #77d;
+  font:  150% sans-serif;
+  color: #226;
+  border-bottom: 3px dotted #77d;
 }
 
 /* Styles for products/index */
 
 #product-list table {
-        border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 #product-list table tr td {
-        padding: 5px;
-        vertical-align: top;
+  padding: 5px;
+  vertical-align: top;
 }
 
 #product-list .list-image {
@@ -27,17 +27,17 @@ h1 {
 }
 
 #product-list .list-description dl {
-        margin: 0;
+  margin: 0;
 }
 
 #product-list .list-description dt {
-	color:        #244;
-	font-weight:  bold;
-	font-size:    larger;
+  color:        #244;
+  font-weight:  bold;
+  font-size:    larger;
 }
 
 #product-list .list-description dd {
-        margin: 0;
+  margin: 0;
 }
 
 #product-list .list-actions {
@@ -71,7 +71,7 @@ h1 {
   float: left;
 }
 
- 
+
 /* Styles for the cart in the sidebar */
 #cart, #cart table {
   font-size: smaller;
@@ -130,18 +130,18 @@ h1 {
 
 
 #store .entry h3 {
- margin-top: 0;
- margin-bottom: 2px;
- color: #227;
+  margin-top: 0;
+  margin-bottom: 2px;
+  color: #227;
 }
 
 #store .entry p {
- margin-top: 0.5em; 
- margin-bottom: 0.8em; 
+  margin-top: 0.5em; 
+  margin-bottom: 0.8em; 
 }
 
 #store .entry .price-line {
- clear: both;
+  clear: both;
 }
 
 #store .entry .add-to-cart {
