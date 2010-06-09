@@ -20,7 +20,7 @@ class StoreController < ApplicationController
   def empty_cart
     session[:cart] = nil
     flash[:notice] = "Your cart is currently empty"
-    redirect_to :action => 'index'
+    redirect_to_index
   end
 
   private # private methods are not available as actions
