@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: Wish1
+  wishlist_id: 1
+  product_id: 1
+  quantity: 8
+
+two:
+  name: Wish2
+  wishlist_id: 1
+  product_id: 2
+  quantity: 4

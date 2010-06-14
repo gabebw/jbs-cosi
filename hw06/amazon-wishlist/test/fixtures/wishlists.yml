@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: 1
+  name: Birthday Wishlist1
+  user_id: 1
+
+two:
+  id: 2
+  name: Christmas Wishlist2
+  user_id: 1
