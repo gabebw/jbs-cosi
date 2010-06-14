@@ -114,6 +114,7 @@ end
 
 def num2lcd(nums, size = 2)
   lcd_num_strings = []
+  # For each number, get its 1st/2nd/3rd/4th/5th lines
   (0..4).to_a.each do |line|
     lines = POSITIONS[line].select{|x| nums.include?(x) }.values
     lines.map! do |l|
@@ -128,6 +129,7 @@ def num2lcd(nums, size = 2)
       lcd_num_strings << lines.join
     end
   end
+  # Automatically joins with "\n"
   puts lcd_num_strings
 end
 
