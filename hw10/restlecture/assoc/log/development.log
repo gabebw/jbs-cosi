@@ -552,3 +552,504 @@ Processing CardsController#store to xml (for 127.0.0.1 at 2010-06-15 20:27:11) [
   [4;36;1mCard Load (0.2ms)[0m   [0;1mSELECT * FROM "cards" WHERE ("cards"."id" = 5) [0m
   [4;35;1mCard Create (32.4ms)[0m   [0mINSERT INTO "cards" ("name", "created_at", "office_phone", "updated_at", "home_phone") VALUES('pito salas', '2010-06-16 00:27:11', NULL, '2010-06-16 00:27:11', NULL)[0m
 Completed in 60ms (View: 1, DB: 33) | 200 OK [http://localhost/cards/5/store.xml?card[name]=pito%20salas]
+  [4;36;1mCard Load (0.5ms)[0m   [0;1mSELECT * FROM "cards" [0m
+
+
+Processing CardsController#destroy to xml (for 127.0.0.1 at 2010-06-16 16:29:39) [DELETE]
+  Parameters: {"id"=>"1"}
+  [4;36;1mCard Load (0.1ms)[0m   [0;1mSELECT * FROM "cards" WHERE ("cards"."id" = 1) [0m
+  [4;35;1mCard Destroy (0.3ms)[0m   [0mDELETE FROM "cards" WHERE "id" = 1[0m
+Completed in 52ms (View: 1, DB: 0) | 200 OK [http://localhost/cards/1.xml]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 16:38:10) [POST]
+  Parameters: {"card"=>{"name"=>"newcard", "home_phone"=>"2", "office_phone"=>"3"}}
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendered rescues/_trace (55.7ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (unprocessable_entity)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-06-16 16:41:51) [GET]
+
+ActionController::RoutingError (No route matches "/users" with {:method=>:get}):
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-06-16 16:41:54) [GET]
+
+ActionController::RoutingError (No route matches "/login" with {:method=>:get}):
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendering rescues/layout (not_found)
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 16:45:29) [POST]
+  Parameters: {"card"=>{"name"=>"newcard", "home_phone"=>"", "office_phone"=>""}}
+
+ActiveRecord::AssociationTypeMismatch (Phone(#2167965492) expected, got String(#2152049396)):
+  app/controllers/cards_controller.rb:43:in `new'
+  app/controllers/cards_controller.rb:43:in `create'
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendered rescues/_trace (61.0ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 16:46:20) [POST]
+  Parameters: {"card"=>{"name"=>"newcard"}}
+  [4;36;1mCard Create (0.4ms)[0m   [0;1mINSERT INTO "cards" ("name", "home_phone", "office_phone", "created_at", "updated_at") VALUES('newcard', NULL, NULL, '2010-06-16 20:46:20', '2010-06-16 20:46:20')[0m
+Completed in 118ms (View: 56, DB: 0) | 201 Created [http://localhost/cards.xml]
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 16:46:53) [POST]
+  Parameters: {"card"=>{"name"=>"newcard", "home_phone"=>"2"}}
+
+ActiveRecord::AssociationTypeMismatch (Phone(#2160025532) expected, got String(#2152049396)):
+  app/controllers/cards_controller.rb:43:in `new'
+  app/controllers/cards_controller.rb:43:in `create'
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendered rescues/_trace (57.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 17:41:43) [POST]
+  Parameters: {"card"=>{"name"=>"wwwnewcard", "home_phone"=>"2"}}
+
+ActiveRecord::AssociationTypeMismatch (Phone(#2167777976) expected, got String(#2152049396)):
+  app/controllers/cards_controller.rb:43:in `new'
+  app/controllers/cards_controller.rb:43:in `create'
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendered rescues/_trace (62.1ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 17:42:10) [POST]
+  Parameters: {"card"=>{"name"=>"wwwnewcard", "home_phone"=>"2"}}
+  [4;36;1mCard Create (0.7ms)[0m   [0;1mINSERT INTO "cards" ("name", "home_phone", "office_phone", "created_at", "updated_at") VALUES('wwwnewcard', 2, NULL, '2010-06-16 21:42:10', '2010-06-16 21:42:10')[0m
+Completed in 110ms (View: 54, DB: 1) | 201 Created [http://localhost/cards.xml]
+
+
+Processing CardsController#newcard (for 127.0.0.1 at 2010-06-16 17:42:42) [GET]
+  Parameters: {"id"=>"get_id_for_card_with_name"}
+
+ActionController::UnknownAction (No action responded to newcard. Actions: create, destroy, edit, get_id_for_card_with_name, index, new, show, store, and update):
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendering rescues/layout (not_found)
+
+
+Processing CardsController#show to xml (for 127.0.0.1 at 2010-06-16 17:43:15) [GET]
+  Parameters: {"id"=>"get_id_for_card_with_name"}
+  [4;35;1mCard Load (0.1ms)[0m   [0mSELECT * FROM "cards" WHERE ("cards"."id" = 0) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Card with ID=get_id_for_card_with_name):
+  app/controllers/cards_controller.rb:16:in `show'
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendered rescues/_trace (57.6ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (not_found)
+
+
+Processing CardsController#show to xml (for 127.0.0.1 at 2010-06-16 17:43:31) [GET]
+  Parameters: {"id"=>"get_id_for_card_with_name"}
+  [4;36;1mCard Load (0.1ms)[0m   [0;1mSELECT * FROM "cards" WHERE ("cards"."id" = 0) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Card with ID=get_id_for_card_with_name):
+  app/controllers/cards_controller.rb:16:in `show'
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendered rescues/_trace (92.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing CardsController#show to xml (for 127.0.0.1 at 2010-06-16 17:44:34) [GET]
+  Parameters: {"card"=>{"name"=>"newcard"}, "id"=>"get_id_for_card_with_name"}
+  [4;36;1mCard Load (0.1ms)[0m   [0;1mSELECT * FROM "cards" WHERE ("cards"."id" = 0) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Card with ID=get_id_for_card_with_name):
+  app/controllers/cards_controller.rb:16:in `show'
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendered rescues/_trace (55.0ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-06-16 17:45:58) [GET]
+  Parameters: {"card"=>{"name"=>"newcard"}}
+
+ActionController::RoutingError (No route matches "/get_id_for_card_with_name.xml" with {:method=>:get}):
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-06-16 17:46:02) [GET]
+  Parameters: {"card"=>{"name"=>"newcard"}}
+
+ActionController::RoutingError (No route matches "/get_id_for_card_with_name.xml" with {:method=>:get}):
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendering rescues/layout (not_found)
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:47:15) [GET]
+  [4;36;1mCard Load (0.5ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 82ms (View: 79, DB: 1) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:47:22) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:47:36) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:47:42) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 35ms (View: 32, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:48:19) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 7ms (View: 4, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:48:38) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 7ms (View: 4, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:48:49) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:49:05) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:49:32) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:49:42) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:49:47) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 8ms (View: 4, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:49:54) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 7ms (View: 4, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:50:01) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 7ms (View: 4, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:50:18) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:50:25) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 7ms (View: 4, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:50:35) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 7ms (View: 4, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:50:43) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:51:16) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 17:51:25) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 18:30:12) [POST]
+  Parameters: {"card"=>{"name"=>"Pito"}}
+  [4;36;1mCard Create (0.4ms)[0m   [0;1mINSERT INTO "cards" ("name", "home_phone", "office_phone", "created_at", "updated_at") VALUES('Pito', NULL, NULL, '2010-06-16 22:30:12', '2010-06-16 22:30:12')[0m
+Completed in 177ms (View: 54, DB: 0) | 201 Created [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:30:18) [GET]
+  [4;35;1mCard Load (0.5ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 33ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:30:38) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 9ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#destroy to xml (for 127.0.0.1 at 2010-06-16 18:30:38) [DELETE]
+  Parameters: {"id"=>"6"}
+  [4;35;1mCard Load (0.1ms)[0m   [0mSELECT * FROM "cards" WHERE ("cards"."id" = 6) [0m
+  [4;36;1mCard Destroy (0.2ms)[0m   [0;1mDELETE FROM "cards" WHERE "id" = 6[0m
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/cards/6.xml]
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 18:30:57) [POST]
+  Parameters: {"card"=>{"name"=>"Pito"}}
+  [4;35;1mCard Create (0.2ms)[0m   [0mINSERT INTO "cards" ("name", "home_phone", "office_phone", "created_at", "updated_at") VALUES('Pito', NULL, NULL, '2010-06-16 22:30:57', '2010-06-16 22:30:57')[0m
+Completed in 8ms (View: 2, DB: 0) | 201 Created [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:31:02) [GET]
+  [4;36;1mCard Load (0.5ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 9ms (View: 5, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#destroy to xml (for 127.0.0.1 at 2010-06-16 18:31:02) [DELETE]
+  Parameters: {"id"=>"7"}
+  [4;35;1mCard Load (0.1ms)[0m   [0mSELECT * FROM "cards" WHERE ("cards"."id" = 7) [0m
+  [4;36;1mCard Destroy (0.5ms)[0m   [0;1mDELETE FROM "cards" WHERE "id" = 7[0m
+Completed in 8ms (View: 1, DB: 1) | 200 OK [http://localhost/cards/7.xml]
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 18:31:16) [POST]
+  Parameters: {"card"=>{"name"=>"Pito"}}
+  [4;35;1mCard Create (0.2ms)[0m   [0mINSERT INTO "cards" ("name", "home_phone", "office_phone", "created_at", "updated_at") VALUES('Pito', NULL, NULL, '2010-06-16 22:31:16', '2010-06-16 22:31:16')[0m
+Completed in 10ms (View: 2, DB: 0) | 201 Created [http://localhost/cards.xml]
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 18:31:20) [POST]
+  Parameters: {"card"=>{"name"=>"p"}}
+  [4;36;1mCard Create (0.2ms)[0m   [0;1mINSERT INTO "cards" ("name", "home_phone", "office_phone", "created_at", "updated_at") VALUES('p', NULL, NULL, '2010-06-16 22:31:20', '2010-06-16 22:31:20')[0m
+Completed in 10ms (View: 2, DB: 0) | 201 Created [http://localhost/cards.xml]
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 18:31:29) [POST]
+  Parameters: {"card"=>{"name"=>"p"}}
+  [4;35;1mCard Create (0.4ms)[0m   [0mINSERT INTO "cards" ("name", "home_phone", "office_phone", "created_at", "updated_at") VALUES('p', NULL, NULL, '2010-06-16 22:31:29', '2010-06-16 22:31:29')[0m
+Completed in 41ms (View: 2, DB: 0) | 201 Created [http://localhost/cards.xml]
+
+
+Processing CardsController#create to xml (for 127.0.0.1 at 2010-06-16 18:31:37) [POST]
+  Parameters: {"card"=>{"name"=>"p"}}
+  [4;36;1mCard Create (0.3ms)[0m   [0;1mINSERT INTO "cards" ("name", "home_phone", "office_phone", "created_at", "updated_at") VALUES('p', NULL, NULL, '2010-06-16 22:31:37', '2010-06-16 22:31:37')[0m
+Completed in 10ms (View: 2, DB: 0) | 201 Created [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:31:47) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+  [4;36;1mCard Load (0.5ms)[0m   [0;1mSELECT * FROM "cards" [0m
+  [4;36;1mCard Load (0.5ms)[0m   [0;1mSELECT * FROM "cards" [0m
+  [4;36;1mCard Load (0.5ms)[0m   [0;1mSELECT * FROM "cards" [0m
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:49:51) [GET]
+  [4;36;1mCard Load (0.5ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:54:07) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:54:21) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:54:37) [GET]
+  [4;35;1mCard Load (0.5ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:55:10) [GET]
+  [4;36;1mCard Load (0.5ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 44ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:55:38) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:56:14) [GET]
+  [4;36;1mCard Load (0.5ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:59:16) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:59:26) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 18:59:48) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 19:00:10) [GET]
+  [4;36;1mCard Load (0.6ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 1) | 200 OK [http://localhost/cards.xml]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-06-16 19:00:10) [GET]
+
+ActionController::RoutingError (No route matches "/cards/.xml" with {:method=>:get}):
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendering rescues/layout (not_found)
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 19:01:37) [GET]
+  [4;35;1mCard Load (0.5ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-06-16 19:01:37) [GET]
+
+ActionController::RoutingError (No route matches "/cards/.xml" with {:method=>:get}):
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendering rescues/layout (not_found)
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 19:02:02) [GET]
+  [4;36;1mCard Load (0.5ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-06-16 19:02:02) [GET]
+
+ActionController::RoutingError (No route matches "/cards/.xml" with {:method=>:get}):
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendering rescues/layout (not_found)
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 19:02:06) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 6, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-06-16 19:02:06) [GET]
+
+ActionController::RoutingError (No route matches "/cards/.xml" with {:method=>:get}):
+  <internal:prelude>:8:in `synchronize'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/gabe/.rvm/rubies/ruby-1.9.1-p378/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendering rescues/layout (not_found)
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 19:02:16) [GET]
+  [4;36;1mCard Load (0.5ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 19:03:09) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 45ms (View: 42, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 19:03:20) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 19:03:38) [GET]
+  [4;35;1mCard Load (0.4ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 19:03:41) [GET]
+  [4;36;1mCard Load (0.4ms)[0m   [0;1mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
+
+
+Processing CardsController#index to xml (for 127.0.0.1 at 2010-06-16 19:03:42) [GET]
+  [4;35;1mCard Load (0.5ms)[0m   [0mSELECT * FROM "cards" [0m
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/cards.xml]
