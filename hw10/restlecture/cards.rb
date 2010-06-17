@@ -11,14 +11,19 @@ Description: Allows user to create/read/update/delete cards; interfaces with ass
 Usage:
 cards.rb add <name> [ <home number> <office number> ]
 - Add a new new card, optionally with 2 phone numbers
+
 cards.rb delete <name>
 - Delete the first card with the given name.
+
 cards.rb view [ * | <name> ]
 - View all cards or a card with the specified name. Pretty-prints results in an attractive text table.
+
 cards.rb change <name> <newname> [ <home number> <office number> ]
 - Change fields in card with given name to newname; optionally change phone numbers too.
+
 cards.rb search <regexp>
 - Search for cards whose name matches the regexp. Pretty-prints results in a text table.
+
 cards.rb seed <int>
 - Generate a specified number of fake cards and numbers with randomly-generated names and phone numbers.
 =end
@@ -85,11 +90,14 @@ class CardUtil
   def view(name)
     if name == '*'
       response = self.class.get("/cards.xml")
+      cards = response.parsed_response['cards']
     else
       id = name_to_id(name)
       response = self.class.get("/cards/#{id}.xml")
+      # singular "card"
+      cards = response.parsed_response['card']
     end
-    pretty_print response.parsed_response['cards']
+    pretty_print cards
   end
 
   private # everything below this is private
@@ -115,6 +123,7 @@ class CardUtil
   # Pretty print card result set in a table.
   # Takes an array of card hashes.
   def pretty_print(cards)
+    cards = [cards] unless cards.instance_of?(Array)
     pretty_table = table do |t|
       t.headings = cards.first.keys
       cards.each do |card|
