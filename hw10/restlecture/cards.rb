@@ -60,8 +60,7 @@ class CardUtil
   # newname, new_home_phone, new_office_phone (phone numbers are optional)
   def update(name, newname, new_home_phone = nil, new_office_phone = nil)
     id = name_to_id(name)
-    card_opts = { :id => id,
-                  :name => newname }
+    card_opts = { :name => newname }
     card_opts[:home_phone] = new_home_phone unless new_home_phone.nil?
     card_opts[:office_phone] = new_office_phone unless new_office_phone.nil?
 
@@ -81,7 +80,7 @@ class CardUtil
   def seed(num_to_seed)
     puts "Adding #{num_to_seed} random cards to the database."
     # Add num_to_seed random cards to the database
-    num_to_seed.times do
+    num_to_seed.to_i.times do
       add(generate_name, generate_phone_number, generate_phone_number)
     end
   end
@@ -123,6 +122,8 @@ class CardUtil
   # Pretty print card result set in a table.
   # Takes an array of card hashes.
   def pretty_print(cards)
+    return if cards.nil?
+
     cards = [cards] unless cards.instance_of?(Array)
     pretty_table = table do |t|
       t.headings = cards.first.keys
@@ -140,9 +141,7 @@ class CardUtil
 
   # Generate a phone number for seeding
   def generate_phone_number
-    return "(%d) %d-%d" % [(0..9).to_a.sample(3),
-                           (0..9).to_a.sample(3),
-                           (0..9).to_a.sample(4)]
+    return (0..9).to_a.sample(10).join.to_i
   end
 
 end
@@ -176,4 +175,6 @@ when 'seed'
   # How many random cards should be created?
   number_to_create = ARGV[1]
   cu.seed(number_to_create)
+else
+  puts "#{command} is not a valid command."
 end
