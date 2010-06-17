@@ -50,6 +50,17 @@ class GitFortuneCookieStore
 
     create_repo
     create_git_dir
+   
+    # For whatever reason, Repository.find raises Octopi::NotFound when
+    # we've just created the repository in this run of the script.
+    # Possibly a caching error.
+    begin
+      repo = Repository.find(:user => @user, :repo => @repo_name)
+    rescue Octopi::NotFound
+      puts "Repository not found. Probably just created repository, please"
+      puts "run this script again."
+      exit 0
+    end
   end
 
   # Create the repo @repo_name if it doesn't exist yet.
@@ -94,7 +105,6 @@ class GitFortuneCookieStore
   # Return text of a random cookie. If no fortunes have been created, returns
   # nil.
   def get_random
-    repo = Repository.find(:user => @user, :repo => @repo_name)
     begin
       all_commit_messages = repo.commits.map(&:message)
       # Return randomly-selected commit message
@@ -107,10 +117,14 @@ class GitFortuneCookieStore
   end
 
   private
-  # Pushes _message_ to github and returns the SHA1 hash that identifies the message
+  
+  # Pushes _message_ to github and returns the SHA1 hash that identifies the
+  # message
   def msg(message)
     FileUtils.cd(@git_dir_path)
 	# via http://ozmm.org/posts/git_msg.html
+    # --allow-empty means git won't require a changed file; it will just store a
+    # commit message.
     `git commit --allow-empty -m "#{message}" &>/dev/null`
     # Use sed to extract SHA1 hash from most recent log message
     hash = `git log master~1..master | sed -n '/commit/s/commit //p'`.chomp
@@ -119,11 +133,13 @@ class GitFortuneCookieStore
     return hash
   end
 
-  # Create git directory so we can push to Github
+  # Create git directory, run git init, and add Github remote so we can push to
+  # Github.
   def create_git_dir
     FileUtils.mkdir_p(@git_dir_path)
     FileUtils.cd(@git_dir_path)
     `git init &>/dev/null` # no effect if already initialized
+    # Add github remote
     `git remote add origin git@github.com:#{@user}/#{@repo_name}.git &>/dev/null`
   end
 end
