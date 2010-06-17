@@ -1,0 +1,16 @@
+# via: http://www.railstutorial.org/chapters/beginning#code:gitignore
+# Ignore random dotfiles
+.DS_Store
+Thumbs.db
+
+# backups
+*.swp
+*~
+.loadpath
+.project
+# no need to add this each time
+tmp/**/*
+doc/api
+doc/app
+log/*.log
+db/*.sqlite3
