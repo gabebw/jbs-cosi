@@ -1,0 +1,84 @@
+Gabe Berke-Williams
+HW10
+API documentation for TV Episodes app.
+
+IMPORTANT NOTE: All non-GET requests require an API key (not yet implemented).
+
+** Users **
+
+Get info:
+  ...for all users:
+    GET    /users.xml
+  ...for a specific user:
+    GET    /users/:id.xml
+
+Update a user:
+  PUT    /users/:id.xml
+    Optional parameters to send:
+      username: string
+      email: string
+
+Delete a user:
+  DELETE /users/:id.xml
+
+Create a user:
+  POST   /users.xml
+    Required parameters:
+      name: string
+
+** Shows **
+Get info
+  ...for all shows:
+  GET    /shows.xml
+  ...for a specific show:
+  GET    /shows/:id.xml
+
+Create a show:
+  POST   /shows.xml
+    Required parameters:
+      name: string
+
+Update a show:
+  PUT    /shows/:id.xml
+
+Delete a show:
+  DELETE /shows/:id.xml
+
+** Dealing with episodes for a given show **
+
+Get all episodes for a show:
+  GET    /shows/:show_id/episodes.xml
+
+Create a new episode for a show (creates episode and associates it with show having ID :show_id):
+  POST   /shows/:show_id/episodes.xml
+    Parameters for the episode:
+      name: string
+      season: integer
+      number: integer
+
+Delete an episode AND delete it from a specific show (using DELETE /shows/:id.xml will not delete it from the show)
+  DELETE /shows/:show_id/episodes/:id.xml
+
+** Episodes **
+Get all episodes:
+  GET    /episodes.xml
+
+Create a new episode (unassociated with any show):
+  POST   /episodes.xml
+   Required parameters for the episode:
+      name: string
+      season: integer
+      number: integer
+
+Get info for a specific episode:
+  GET    /episodes/:id.xml
+
+Update info for a specific episode:
+  PUT    /episodes/:id.xml
+    Optional parameters for the episode:
+      name: string
+      season: integer
+      number: integer
+
+Delete an episode:
+  DELETE /episodes/:id.xml
