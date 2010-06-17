@@ -50,8 +50,6 @@ class GitFortuneCookieStore
 
     create_repo
     create_git_dir
-     
-    @repo = Repository.find(:user => @user, :repo => @repo_name)
   end
 
   # Create the repo @repo_name if it doesn't exist yet.
@@ -66,7 +64,7 @@ class GitFortuneCookieStore
       authenticated_with :login => @user, :token => @api_token do
         # Get an array of all of @user's repos' names
         # @repo_name doesn't exist yet. Now create it.
-        Repository.create({:name => @repo_name})#, :description => "A Git-based fortune cookie store"})
+        Repository.create({:name => @repo_name})
       end
     end
   end
@@ -96,8 +94,9 @@ class GitFortuneCookieStore
   # Return text of a random cookie. If no fortunes have been created, returns
   # nil.
   def get_random
+    repo = Repository.find(:user => @user, :repo => @repo_name)
     begin
-      all_commit_messages = @repo.commits.map(&:message)
+      all_commit_messages = repo.commits.map(&:message)
       # Return randomly-selected commit message
       return all_commit_messages[rand(all_commit_messages.length)]
     rescue Octopi::NotFound
@@ -137,6 +136,8 @@ def print_usage
   puts "-g cookie_hash: Print the cookie with ID cookie_id"
 end
 
+monster = GitFortuneCookieStore.new
+
 if ARGV.empty?
   puts "Please provide an argument."
   print_usage()
@@ -147,8 +148,6 @@ if ARGV.first == '-h'
   print_usage
   exit 0
 end
-
-monster = GitFortuneCookieStore.new
 
 command_flag = ARGV[0]
 case command_flag
