@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 =begin
 Name: Gabe Berke-Williams
 Date: 6/15/10
