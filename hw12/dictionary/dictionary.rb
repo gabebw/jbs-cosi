@@ -21,6 +21,13 @@ class Dictionary
     @dictionary[to] = from
     @dictionary[from] = to
   end
+
+  # Remove translation (can be from either word)
+  def remove_translation(word)
+    translation = @dictionary[word]
+    @dictionary.delete(word)
+    @dictionary.delete(translation)
+  end
   
   def translate(word)
     @dictionary[word]
