@@ -48,14 +48,14 @@ class CardUtil
     options = {:body => {:card => card_opts } }
     self.class.post("/cards.xml", options)
   end
- 
+
   # Delete first card whose name is _name_.
   def delete(name)
     id = name_to_id(name)
     puts "Deleting card with ID #{id}."
     self.class.delete("/cards/#{id}.xml")
   end
- 
+
   # Update card with name _name_ and change its attributes to 
   # newname, new_home_phone, new_office_phone (phone numbers are optional)
   def update(name, newname, new_home_phone = nil, new_office_phone = nil)
@@ -118,7 +118,7 @@ class CardUtil
       return target_card['id']
     end
   end
-  
+
   # Pretty print card result set in a table.
   # Takes an array of card hashes.
   def pretty_print(cards)
