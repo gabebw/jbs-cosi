@@ -75,4 +75,19 @@ class DictionaryTest < Test::Unit::TestCase
     assert_equal "book", @dict.translate("boek")
     assert_equal "boek", @dict.translate("book")
   end
+
+  # Can we remove a definition by the first argument passed?
+  def test_remove_xlate_by_first_word
+    @dict.add_translation("book", "boek")
+    @dict.remove_translation("book")
+    assert_nil @dict.translate("book")
+    assert_nil @dict.translate("boek")
+  end
+  # Can we remove a definition by the second argument passed?
+  def test_remove_xlate_by_second_word
+    @dict.add_translation("book", "boek")
+    @dict.remove_translation("boek")
+    assert_nil @dict.translate("book")
+    assert_nil @dict.translate("boek")
+  end
 end
