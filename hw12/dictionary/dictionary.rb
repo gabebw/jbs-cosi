@@ -1,5 +1,15 @@
 #!/usr/bin/env ruby
-# coding: utf-8 # required for using accented chars
+# coding: utf-8 # required for using accented chars in Ruby 1.9
+=begin
+Gabe Berke-Williams
+HW12: Testing (dictionary.rb)
+
+Description: A TDD-based iteration of the Dictionary class.
+Runs tests to check that Dictionary class is working as expected.
+
+Usage: ruby dictionary.rb
+All tests should pass.
+=end
 
 require 'test/unit'
 
