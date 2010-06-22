@@ -69,7 +69,7 @@ class DictionaryTest < Test::Unit::TestCase
   end
   
   def test_accented
-    @dict.add_translation("book", "böek".encode("UTF-8"))
+    @dict.add_translation("book", "böek")
     assert !@dict.empty?
     assert_equal "book", @dict.translate("böek")
   end
