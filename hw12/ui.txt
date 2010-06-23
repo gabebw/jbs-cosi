@@ -1,0 +1,30 @@
+Gabe Berke-Williams
+HW12: UI (Mac)
+---------------------
+
+UI - Mac
+
+** Good **
+1. Standard keyboard shortcuts
+These aren't always followed, but almost all apps have Command-, mapped to Preferences and Space mapped to pause/play (if appropriate). Command-N creates a new <whatever>, etc. It's standard across all apps, Apple-created or not. I know it will work.
+
+2. Software Update is always 2 clicks away. It's in the Apple menu, and it's one of the first things you see. There's no going into the browser, no hunting for software update. It's always right there.
+
+3. Hotkeys
+I love that Apple maps F1-F12 for you, with clear icons on each key depicting what it does. I don't have to use Quicksilver to start/stop iTunes, or change the volume, they're just there and standard. It's awesome.
+
+** Bad **
+1. Installing apps
+The idea of mounting a disk image, dragging the contents to the Applications folder, and unmounting the image is completely non-intuitive. I think I know at least one person still running Firefox from the disk image, years later. It's very unclear, and it makes installing apps "for real" much harder than it needs to be.
+
+2. Unmounting disks is non-obvious. You have to drag them to the trash, and the
+trash does change to an "Eject" button if you drag it, but that's the
+"Minesweeper" approach - you have to try it before the usage becomes obvious. If
+you're staring at the disk trying to unmount it, there isn't an obvious way to
+do it from the desktop.
+
+3. Most windows can be closed by Command-W, but mysteriously this doesn't apply
+to the Fonts window that pops up sometimes. It's the topmost window, but hitting
+Command-W doesn't close it. It closes its parent window, which is never what you
+want it to do. To see this in action, go to Mail, hit Command-T, then hit
+Command -W. The Mail window closes, but not the Fonts window.
