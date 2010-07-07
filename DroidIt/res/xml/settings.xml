@@ -7,7 +7,7 @@
 		android:defaultValue="true" />
 	<CheckBoxPreference
 		android:key="time_to_respond"
-		android:title="@+string/time_to_respond"
-		android:summary="@+string/time_to_respond_summary"
+		android:title="@string/time_to_respond_title"
+		android:summary="@string/time_to_respond_summary"
 		android:defaultValue="true" />
 </PreferenceScreen>

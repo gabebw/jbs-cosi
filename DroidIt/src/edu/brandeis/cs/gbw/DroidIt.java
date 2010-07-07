@@ -40,9 +40,8 @@ public class DroidIt extends Activity implements OnClickListener {
     public void onClick(View v) {
     	switch(v.getId()){
     	case R.id.about_button:
-    		// Start anonymous Intent
-    		Intent i = new Intent(this, About.class);
-    		startActivity(i);
+    		Intent aboutIntent = new Intent(this, About.class);
+    		startActivity(aboutIntent);
     		break;
     	}
 	}
@@ -62,7 +61,6 @@ public class DroidIt extends Activity implements OnClickListener {
 	/**
 	 * Called when user selects any menu item. Currently only does something when settings button is pressed.
 	 */
-	/*
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -73,5 +71,4 @@ public class DroidIt extends Activity implements OnClickListener {
 		}
 		return false;
 	}
-	*/
 }
