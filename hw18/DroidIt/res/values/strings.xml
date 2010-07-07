@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, DroidIt!</string>
+    <string name="app_name">DroidIt</string>
+	<string name="continue_label">Continue</string>
+	<string name="new_game_label">New Game</string>
+	<string name="about_label">About</string>
+	<string name="exit_label">Exit</string>
+	<string name="about_title">About DroidIt</string>
+	<string name="about_text">\
+DroidIt: the game of fast reflexes and memory!
+DroidIt will tell you to shake the phone, follow colorful patterns on the screen, and more, and
+you have only seconds to respond!
+</string>
+	<string name="settings_label">Settings...</string>
+	<string name="settings_title">DroidIt settings</string>
+	<string name="settings_shortcut">s</string>
+	<string name="music_title">Music</string>
+	<string name="music_summary">Turn background music on?</string>
+	<string name="time_to_respond_title">Time to Respond</string>
+	<string name="time_to_respond_summary">Change time to respond based on difficulty?</string>
+</resources>
