@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ! Excerpted from "Hello, Android! 2e",
+ ! published by The Pragmatic Bookshelf.
+ ! Copyrights apply to this code. It may not be used to create training material, 
+ ! courses, books, articles, and the like. Contact us if you are in doubt.
+ ! We make no guarantees that this code is fit for any purpose. 
+ ! Visit http://www.pragmaticprogrammer.com/titles/eband3 for more book information.-->
+<resources>
+   <string name="app_name">BrowserView</string>
+   <string name="go_button">Go</string>
+<string name="rh_label">Roommate Helper</string>
+<string name="rh_shortcut">r</string>
+<string name="definitious_label">Definitious</string>
+<string name="definitious_shortcut">d</string>
+<string name="cakewalk_label">Cakewalk</string>
+<string name="cakewalk_shortcut">c</string>
+</resources>

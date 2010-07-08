@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/rh_button"
+		android:title="@string/rh_label"
+		android:alphabeticShortcut="@string/rh_shortcut" />
+	<item
+		android:id="@+id/cakewalk_button"
+		android:title="@string/cakewalk_label"
+		android:alphabeticShortcut="@string/cakewalk_shortcut" />
+	<item
+		android:id="@+id/definitious_button"
+		android:title="@string/definitious_label"
+		android:alphabeticShortcut="@string/definitious_shortcut" />
+</menu>
