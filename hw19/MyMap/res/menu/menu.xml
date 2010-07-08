@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:alphabeticShortcut="t"
+		android:id="@+id/traffic_button"
+		android:title="@string/traffic_label"></item>
+	<item
+		android:alphabeticShortcut="v"
+		android:id="@+id/street_view_button"
+		android:title="@string/street_view_label"></item>
+	<item
+		android:alphabeticShortcut="s"
+		android:checked="true"
+		android:id="@+id/satellite_button"
+		android:checkable="true"
+		android:title="@string/satellite_label"></item>
+</menu>

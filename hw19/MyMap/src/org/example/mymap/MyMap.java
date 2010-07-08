@@ -21,6 +21,10 @@ import android.widget.TextView;
 // onClick stuff
 import android.view.View;
 import android.view.View.OnClickListener;
+// Menu stuff
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class MyMap extends MapActivity implements OnClickListener {
    private MapView map;
@@ -35,10 +39,10 @@ public class MyMap extends MapActivity implements OnClickListener {
 
       setContentView(R.layout.main);
       initMapView();
-      initMyLocation();
-      
+
       overlay = new MyLocationOverlay(this, map);
-      
+      initMyLocation();
+            
       go = (Button) findViewById(R.id.go_button);
       position = (TextView) findViewById(R.id.position);
       
@@ -55,7 +59,6 @@ public class MyMap extends MapActivity implements OnClickListener {
 
    /** Start tracking the position on the map. */
    private void initMyLocation() {
-      //final MyLocationOverlay overlay = new MyLocationOverlay(this, map);
       overlay.enableMyLocation();
       //overlay.enableCompass(); // does not work in emulator
       overlay.runOnFirstFix(new Runnable() {
@@ -73,7 +76,9 @@ public class MyMap extends MapActivity implements OnClickListener {
     */
    private void updatePosition(){
 	   GeoPoint g = overlay.getMyLocation();
-	   position.setText("pos: " + g.toString());
+	   double longitude = g.getLongitudeE6() / 1E6;
+	   double latitude = g.getLatitudeE6() / 1E6 ;
+	   position.setText("lat: " + latitude + " / long: " + longitude);
    }
    
    public void onClick(View v){
@@ -91,5 +96,36 @@ public class MyMap extends MapActivity implements OnClickListener {
    protected boolean isRouteDisplayed() {
       // Required by MapActivity
       return false;
+   }
+   
+   /**
+    * Called when user presses Menu button.
+    */
+   @Override
+   public boolean onCreateOptionsMenu(Menu menu){
+	   super.onCreateOptionsMenu(menu);
+	   MenuInflater inflater = getMenuInflater();
+	   inflater.inflate(R.menu.menu, menu);
+	   return true;
+   }
+   
+   /**
+    * Called when user selects a menu item.
+    */
+   @Override
+   public boolean onOptionsItemSelected(MenuItem item){
+	   switch(item.getItemId()){
+	   case R.id.traffic_button:
+		   return true;
+	   case R.id.street_view_button:
+		   return true;
+	   case R.id.satellite_button:
+		   return true;
+	   case R.id.settings:
+		   // Go to prefs page
+		   startActivity(new Intent(this, Prefs.class));
+		   return true;
+	   }
+	   return false;
    }
 }
