@@ -9,4 +9,7 @@
 -->
 <resources>
     <string name="app_name">MyMap</string>
+<string name="satellite_label">Satellite</string>
+<string name="street_view_label">Street View</string>
+<string name="traffic_label">Traffic</string>
 </resources>
