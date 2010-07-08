@@ -18,9 +18,10 @@ public final class R {
         public static final int go_button=0x7f070001;
         public static final int map=0x7f070003;
         public static final int position=0x7f070002;
-        public static final int satellite_button=0x7f070006;
-        public static final int street_view_button=0x7f070005;
-        public static final int traffic_button=0x7f070004;
+        public static final int satellite_button=0x7f070007;
+        public static final int settings=0x7f070004;
+        public static final int street_view_button=0x7f070006;
+        public static final int traffic_button=0x7f070005;
     }
     public static final class layout {
         public static final int main=0x7f030000;
