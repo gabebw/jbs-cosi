@@ -2,6 +2,9 @@
 <menu
 	xmlns:android="http://schemas.android.com/apk/res/android">
 	<item
+		android:id="@+id/settings"
+		android:title="@string/settings_label" />
+	<item
 		android:alphabeticShortcut="t"
 		android:id="@+id/traffic_button"
 		android:title="@string/traffic_label"></item>

@@ -34,7 +34,7 @@
 		</activity>
 		<activity
 			android:name=".Prefs"
-			android:label="@string/settings_title">
+			android:label="@string/settings_label">
 		</activity>
 		<uses-library
 			android:name="com.google.android.maps" />
