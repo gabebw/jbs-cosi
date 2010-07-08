@@ -15,9 +15,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.webkit.WebView;
-// ...
+// widgets
 import android.widget.Button;
 import android.widget.EditText;
+
+// Menu stuff
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class BrowserView extends Activity {
    private EditText urlText;
@@ -59,4 +64,15 @@ public class BrowserView extends Activity {
       webView.getSettings().setJavaScriptEnabled(true);
       webView.loadUrl(urlText.getText().toString());
    }
+
+	/**
+	 * Called when user selects any menu item.
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu, menu);
+		return true;
+	}
 }
