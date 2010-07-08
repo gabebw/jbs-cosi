@@ -29,12 +29,15 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
-        public static final int cakewalk_label=0x7f040006;
-        public static final int cakewalk_shortcut=0x7f040007;
-        public static final int definitious_label=0x7f040004;
-        public static final int definitious_shortcut=0x7f040005;
+        public static final int cakewalk_label=0x7f040008;
+        public static final int cakewalk_shortcut=0x7f040009;
+        public static final int cakewalk_url=0x7f04000a;
+        public static final int definitious_label=0x7f040005;
+        public static final int definitious_shortcut=0x7f040006;
+        public static final int definitious_url=0x7f040007;
         public static final int go_button=0x7f040001;
         public static final int rh_label=0x7f040002;
         public static final int rh_shortcut=0x7f040003;
+        public static final int rh_url=0x7f040004;
     }
 }
