@@ -7,15 +7,15 @@
 	<item
 		android:alphabeticShortcut="t"
 		android:id="@+id/traffic_button"
-		android:title="@string/traffic_label"></item>
+		android:title="@string/traffic_label" />
 	<item
 		android:alphabeticShortcut="v"
 		android:id="@+id/street_view_button"
-		android:title="@string/street_view_label"></item>
+		android:title="@string/street_view_label" />
 	<item
 		android:alphabeticShortcut="s"
 		android:checked="true"
 		android:id="@+id/satellite_button"
 		android:checkable="true"
-		android:title="@string/satellite_label"></item>
+		android:title="@string/satellite_label" />
 </menu>
