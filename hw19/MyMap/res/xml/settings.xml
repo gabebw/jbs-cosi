@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory
+		android:title="@string/view_preferences">
+		<CheckBoxPreference
+			android:key="street_view"
+			android:title="@string/title_street_view_preference"
+			android:summary="@string/summary_street_view_preference" />
+		<CheckBoxPreference
+			android:key="satellite"
+			android:title="@string/title_satellite_preference"
+			android:summary="@string/summary_satellite_preference" />
+		<CheckBoxPreference
+			android:key="traffic"
+			android:title="@string/title_traffic_preference"
+			android:summary="@string/summary_traffic_preference" />
+	</PreferenceCategory>
+</PreferenceScreen>

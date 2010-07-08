@@ -26,6 +26,10 @@
             <category android:name="android.intent.category.LAUNCHER" />
          </intent-filter>
       </activity>
+      <activity
+	android:name=".Prefs"
+	android:label="@string/settings_title">
+</activity>
       <uses-library android:name="com.google.android.maps" />
    </application>
    <uses-sdk android:minSdkVersion="3" /> <!--  android:targetSdkVersion="8" /> -->
