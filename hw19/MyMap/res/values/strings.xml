@@ -12,4 +12,12 @@
 <string name="satellite_label">Satellite</string>
 <string name="street_view_label">Street View</string>
 <string name="traffic_label">Traffic</string>
+<string name="settings_label">Settings...</string>
+<string name="view_preferences">View Preferences</string>
+<string name="title_street_view_preference">Street View</string>
+<string name="summary_street_view_preference">View map in Street View mode</string>
+<string name="title_satellite_preference">Satellite</string>
+<string name="summary_satellite_preference">View map in Satellite mode</string>
+<string name="title_traffic_preference">Traffic</string>
+<string name="summary_traffic_preference">View map in Traffic mode</string>
 </resources>
