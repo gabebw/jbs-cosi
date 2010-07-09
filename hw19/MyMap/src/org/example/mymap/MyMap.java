@@ -1,3 +1,17 @@
+/**
+ * Author: Gabe B-W
+ * Date: 7/8/2010
+ * 
+ * MyMap class.
+ * Uses MapView etc. to display a zoomable map using Google Map API.
+ * When user presses "Menu", a menu pops up allowing the user to select one
+ * of 3 views for the map:
+ * - Traffic (default)
+ * - Satellite
+ * - Street View
+ * There is also a settings page with checkboxes and a ListPreference, but it doesn't
+ * actually do anything.
+ */
 /***
  * Excerpted from "Hello, Android! 2e",
  * published by The Pragmatic Bookshelf.
