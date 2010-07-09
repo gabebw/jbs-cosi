@@ -13,8 +13,8 @@
    android:orientation="vertical"
    android:layout_width="fill_parent"
    android:layout_height="fill_parent">
-	<Button android:text="Go"
-		android:id="@+id/go_button"
+	<Button android:text="@string/show_latitude_longitude_label"
+		android:id="@+id/show_latitude_longitude_button"
 		android:textSize="20sp"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"></Button>

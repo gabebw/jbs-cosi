@@ -15,5 +15,14 @@
 			android:key="traffic"
 			android:title="@string/title_traffic_preference"
 			android:summary="@string/summary_traffic_preference" />
+			           
+        <ListPreference
+                android:key="view_list_preference"
+                android:title="Choose a view"
+                android:summary="Street view, Satellite, or Traffic"
+                android:defaultValue="traffic"
+                android:entries="@array/view_list_preference"
+                android:entryValues="@array/view_values_list_preference"
+                android:dialogTitle="Choose One" />
 	</PreferenceCategory>
 </PreferenceScreen>

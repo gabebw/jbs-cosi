@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array
+		name="view_list_preference">
+		<item>Street View</item>
+		<item>Traffic View</item>
+		<item>Satellite View</item>
+	</string-array>
+	<string-array
+		name="view_values_list_preference">
+		<item>street_view</item>
+		<item>traffic</item>
+		<item>satellite</item>
+	</string-array>
+</resources>

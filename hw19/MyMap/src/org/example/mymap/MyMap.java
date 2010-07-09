@@ -27,34 +27,35 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+
 public class MyMap extends MapActivity implements OnClickListener {
    private MapView map;
    private MapController controller;
-   private Button go;
+   private Button showLatitudeLongitudeButton;
    private TextView position;
    private MyLocationOverlay overlay;
+   
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-   @Override
-   public void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+		initMapView();
 
-      setContentView(R.layout.main);
-      initMapView();
+		overlay = new MyLocationOverlay(this, map);
+		initMyLocation();
 
-      overlay = new MyLocationOverlay(this, map);
-      initMyLocation();
-            
-      go = (Button) findViewById(R.id.go_button);
-      position = (TextView) findViewById(R.id.position);
-      
-      go.setOnClickListener(this);
-   }
+		showLatitudeLongitudeButton = (Button) findViewById(R.id.show_latitude_longitude_button);
+		position = (TextView) findViewById(R.id.position);
+
+		showLatitudeLongitudeButton.setOnClickListener(this);
+	}
 
    /** Find and initialize the map view. */
    private void initMapView() {
       map = (MapView) findViewById(R.id.map);
       controller = map.getController();
-      map.setSatellite(true);
+      map.setTraffic(true); // default to Traffic view
       map.setBuiltInZoomControls(true);
    }
 
@@ -72,9 +73,10 @@ public class MyMap extends MapActivity implements OnClickListener {
       map.getOverlays().add(overlay);
    }
    
-   /**
-    * Update position TextView with user's current location. Called when Button#go is pressed.
-    */
+	/**
+	 * Update position TextView with user's current location. Called when
+	 * showLatitudeLongitudeButton is pressed.
+	 */
    private void updatePosition(){
 	   GeoPoint g = overlay.getMyLocation();
 	   double longitude = g.getLongitudeE6() / 1E6;
@@ -84,7 +86,7 @@ public class MyMap extends MapActivity implements OnClickListener {
    
    public void onClick(View v){
 	   switch(v.getId()){
-	   case(R.id.go_button):
+	   case(R.id.show_latitude_longitude_button):
 		   updatePosition();
 		   break;
 	   default:
@@ -93,14 +95,16 @@ public class MyMap extends MapActivity implements OnClickListener {
 	   }
    }
 
+   /**
+    * Required by MapActivity. Just returns false, for now.
+    */
    @Override
    protected boolean isRouteDisplayed() {
-      // Required by MapActivity
       return false;
    }
    
    /**
-    * Called when user presses Menu button.
+    * Called when user presses Menu button. Inflates menu from res/menu/menu.xml
     */
    @Override
    public boolean onCreateOptionsMenu(Menu menu){
@@ -110,23 +114,58 @@ public class MyMap extends MapActivity implements OnClickListener {
 	   return true;
    }
    
-   /**
-    * Called when user selects a menu item.
-    */
+	/**
+	 * Display map using only traffic view (satellite and street view are turned
+	 * off).
+	 */
+	private void showOnlyTraffic() {
+		map.setTraffic(true);
+		map.setStreetView(false);
+		map.setSatellite(false);
+	}
+
+	/**
+	 * Display map using only satellite view (traffic and street view are turned
+	 * off).
+	 */
+	private void showOnlySatellite() {
+		map.setSatellite(true);
+		map.setTraffic(false);
+		map.setStreetView(false);
+	}
+
+	/**
+	 * Display map using only street view (traffic and satellite view are turned
+	 * off).
+	 */
+	private void showOnlyStreetView() {
+		map.setStreetView(true);
+		map.setSatellite(false);
+		map.setTraffic(false);
+	}
+   
+	/**
+	 * Called when user selects a menu item. Sets view mode (traffic / street
+	 * view / satellite) appropriately depending on which button was clicked.
+	 */
    @Override
    public boolean onOptionsItemSelected(MenuItem item){
 	   switch(item.getItemId()){
 	   case R.id.traffic_button:
+		   showOnlyTraffic();
 		   return true;
 	   case R.id.street_view_button:
+		   showOnlyStreetView();
 		   return true;
 	   case R.id.satellite_button:
+		   showOnlySatellite();
 		   return true;
 	   case R.id.settings:
 		   // Go to prefs page
-		   startActivity(new Intent(this, Prefs.class));
+		   Intent prefsIntent = new Intent(this, Prefs.class);
+		   startActivity(prefsIntent);
 		   return true;
 	   }
 	   return false;
-   }
+	}
 }
