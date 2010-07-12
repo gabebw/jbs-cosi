@@ -53,28 +53,26 @@ public class MagicWord extends SpeechGatheringActivity implements OnUtteranceCom
         }
         else
         {
-            String mostLikelyThingHeard = lastThingsHeard.get(0);
-            String magicWord = this.getResources().getString(R.string.magicword);
-            int levenshteinDistance = getLevenshteinDistance(magicWord, mostLikelyThingHeard);
-            if (mostLikelyThingHeard.equals(magicWord))
-            {
-                speaker.say("You said the magic word!", this);
-            }
-            else
-            {
-            	String message = "You guessed " + mostLikelyThingHeard + ", which is " + levenshteinDistance + " letters off.";
-                //speaker.say("It's not " + mostLikelyThingHeard + " try again", this);
-                speaker.say(message, this);
-                result.setText(message);
-            }
-        }
-        //result.setText("heard: " + lastThingsHeard);
-    }
+			String mostLikelyThingHeard = lastThingsHeard.get(0);
+			String magicWord = this.getResources().getString(R.string.magicword);
+			int levenshteinDistance = getLevenshteinDistance(magicWord, mostLikelyThingHeard);
+			String message = "";
+			if (mostLikelyThingHeard.equals(magicWord)) {
+				message = "You said the magic word!";
+			} else {
+				message = "You guessed " + mostLikelyThingHeard + ", which is "
+					+ levenshteinDistance + " letters off.";
 
-    /**
-     * Return Levenshtein distance between two strings.
-     * From http://www.merriampark.com/ldjava.htm
-     */
+			}
+			speaker.say(message, this);
+			result.setText(message);
+		}
+	}
+
+	/**
+	 * Return Levenshtein distance between two strings.
+	 * From http://www.merriampark.com/ldjava.htm
+	 */
 	public static int getLevenshteinDistance(String s, String t) {
 		if (s == null || t == null) {
 			throw new IllegalArgumentException("Strings must not be null");
