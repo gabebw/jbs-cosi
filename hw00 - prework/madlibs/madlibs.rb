@@ -52,8 +52,15 @@ class MadLibs
         @labels[query]
       else
         # When asking for input, use spaces for newlines
-        print "Please give me " + query.gsub("\n", ' ') + ": "
+        question = "Please give me " + query.gsub("\n", ' ') + ": "
+        print question
         answer = $stdin.gets.chomp
+        while answer.empty?
+          puts "You must provide an answer!"
+          print question
+          answer = $stdin.gets.chomp
+        end
+
         # associate label with answer if label given
         @labels[label] = answer if label
         answer
@@ -62,4 +69,9 @@ class MadLibs
   end
 end
 
-MadLibs.new(ARGV[0])
+if ARGV.empty?
+  puts "Please provide a filename from which to read the Mad Libs template."
+  exit 1
+else
+  MadLibs.new(ARGV[0])
+end
