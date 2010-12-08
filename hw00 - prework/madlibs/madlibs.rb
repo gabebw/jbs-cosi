@@ -21,6 +21,12 @@ reused at "((gem))"
 =end
 
 class MadLibs
+  CHUNKER = /\({2} # two open parens
+             (?:(\w+?):)? # label, if it exists (doesn't capture the colon)
+             (.+?) # the actual query, e.g. "A noun"
+             \){2} # two close parens
+            /mx
+
   # Create a filehandle and parse the file.
   def initialize(filename)
     # Check to make sure the file's readable
@@ -38,7 +44,7 @@ class MadLibs
   # Returns the template_str with substitutions performed.
   def parse(template_str)
     # Use /m flag for multiline, to enable "((a\ngemstone))"
-    template_str.gsub(/\({2}(?:(\w+?):)?(.+?)\){2}/m) do
+    template_str.gsub(CHUNKER) do
       label = $1 # may be nil
       query = $2
       # If no label, check if query IS a label
