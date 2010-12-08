@@ -5,7 +5,7 @@ madlibs.rb
 Author: Gabe B-W
 Prework: Mad Libs program
 Parses ARGV[0] as a Mad Libs template file and asks user for words to fill in
-the blanks. 
+the blanks.
 
 Format of the template file:
 ((...)) = placeholder, e.g.
@@ -30,7 +30,7 @@ class MadLibs
   # Create a filehandle and parse the file.
   def initialize(filename)
     # Check to make sure the file's readable
-    if not File.readable_real?(filename)
+    unless File.readable_real?(filename)
       raise "#{filename} not readable, exiting."
     end
     @file = File.new(filename, 'r')
@@ -48,7 +48,7 @@ class MadLibs
       label = $1 # may be nil
       query = $2
       # If no label, check if query IS a label
-      if not label and @labels.key?(query)
+      if label.nil? and @labels.key?(query)
         @labels[query]
       else
         # When asking for input, use spaces for newlines
